@@ -49,12 +49,6 @@ spring:
   application:
     name: order
 
-eureka:
-  instance:
-    hostname: order1
-  client:
-    service-url:
-      defaultZone: http://eureka8761.com:8761/eureka
 
 
 

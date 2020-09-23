@@ -1,0 +1,72 @@
+server:
+  port: 8092
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.redis_demo.bean
+spring:
+  datasource:
+    druid:
+      connection-properties: druid.stat.mergeSql=true;
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat,wall
+      initial-size: 5
+      max-active: 30
+      max-pool-prepared-statement-per-connection-size: 50
+      max-wait: 60000
+      min-evictable-idle-time-millis: 300000
+      min-idle: 5
+      password: root
+      pool-prepared-statements: true
+      stat-view-servlet:
+        login-password: 123
+        login-username: admin
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      url: jdbc:mysql://localhost/clouddb?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      use-global-data-source-stat: true
+      username: root
+      validation-query: SELECT 1 FROM DUAL
+      web-stat-filter:
+        exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+      filter:
+        stat:
+          slow-sql-millis: 500
+  redis:
+    database: 0
+    host: localhost
+    jedis:
+      pool:
+        max-active: 200
+        max-idle: 10
+        max-wait: -1
+        min-idle: 0
+    password:
+    port: 6379
+    timeout: 6000
+  application:
+    name: order
+
+eureka:
+  instance:
+    hostname: order1
+  client:
+    service-url:
+      defaultZone: http://eureka8761.com:8761/eureka
+
+
+
+
+PRODUCT:
+  ORDER:
+    ribbon:
+      #请求链接超时时间
+      ConnectTimeout: 2000
+      #请求处理超时时间 默认值是1秒
+      ReadTimeout: 1000
+      #对所有操作都进行重试
+      OkToRetryOnAllOperatins: true  #Okhttp
+      MaxAutoRetries: 2  #对当前选择的实例重试次数，不包括第一次
+      MaxAutoRetriesNextServer: 0 #切换的重试次数

@@ -2,7 +2,7 @@ server:
   port: 9999
   
 code:
-  name: pyg  
+  name: zzz 
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
